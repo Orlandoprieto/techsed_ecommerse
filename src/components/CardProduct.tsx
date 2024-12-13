@@ -10,7 +10,14 @@ interface CardProductProps {
    product: Product
 }
 
-export default function CardProduct({ product }: CardProductProps) {
+interface CardProductCartProps {
+   id: number
+   title: string
+   quantity: number
+   image: string
+}
+
+export const CardProduct = ({ product }: CardProductProps) => {
    const router = useRouter()
 
    const handlerClick = () => {
@@ -26,9 +33,36 @@ export default function CardProduct({ product }: CardProductProps) {
             <p className="text-neutral text-base sm:text-lg md:text-xl lg:text-lg xl:text-base">
                {product.title}
             </p>
-            <Price priceList={product.listingPrice} priceSale={product.price}/>
-            <Button title="Ver producto" intent="primary" handlerClick={handlerClick}/>
+            <Price product={product} />
+            <Button title="Ver producto" intent="primary" handlerClick={handlerClick} />
          </div>
       </div>
    );
 }
+
+
+
+export const CardProductCart = ({ id, image, title, quantity }: CardProductCartProps) => {
+
+   return (
+      <div className="flex items-center justify-between border-b border-gray-200 py-4 px-4">
+         <div className="w-[80px] h-[80px]">
+            <Image src={image} alt={title} width={80} height={80} objectFit="cover" />
+         </div>
+
+         <div className="flex-1 ml-4">
+            <span className="block text-sm font-medium text-gray-800">{title}</span>
+            <span className="block text-xs text-gray-500">{`Cantidad: ${quantity}`}</span>
+         </div>
+
+         
+         {/* `<div className="text-right">
+            <span className="block text-xs text-gray-500">Subtotal</span>
+            <span className="block text-lg font-semibold text-gray-800">${price * quantity}</span>
+         </div> */}
+`
+      </div>
+   );
+};
+
+

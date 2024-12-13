@@ -7,9 +7,9 @@ export const products: Product[] = [
       description: "Ladrillo hueco 8cm x 18cm x 33cm - Pallet: 198 unidades",
       price: 60588,
       listingPrice: 67320,
-      stock: 5,
-      salesUnit: "group",
-      measurementUnit: "pallet",
+      stock: 7,
+      salesUnit: "pallets",
+      measurementUnit: "unidades",
       unitValue: 198,
    },
    {
@@ -17,9 +17,9 @@ export const products: Product[] = [
       title: "Ceramico Azabache 20Und 36X36 1ra 2,68 m2 por Caja",
       description: "Ceramica esmaltada36x36, terminacion brillante, transito medio, liso, Colores disponibles: Negro",
       price: 13031,
-      stock: 5,
-      salesUnit: "area",
-      measurementUnit: "m2",
+      stock: 12,
+      salesUnit: "cajas",
+      measurementUnit: "superficie",
       unitValue: 2.68,
    },
    {
@@ -28,7 +28,7 @@ export const products: Product[] = [
       description: "HIERRO 25 MM X 12M",
       price: 76293,
       listingPrice: 89757,
-      stock: 5,
-      salesUnit: "unit",
+      stock: 20,
+      salesUnit: "unidad",
    }
 ]

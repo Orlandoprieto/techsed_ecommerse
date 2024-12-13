@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/Header";
+import CalculateOnProduct from "@/context/CalculateOnProduct";
+import { CartProvider } from "@/context/Cart";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,10 +28,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="flex justify-center w-full px-3 sm:px-20">
-      <body className="flex flex-col w-full lg:max-w-[1200px]">
-        <Header />
-        {children}
-      </body>
+      <CartProvider>
+        <CalculateOnProduct>
+          <body className="flex flex-col w-full lg:max-w-[1200px]">
+            <Header />
+            {children}
+          </body>
+        </CalculateOnProduct>
+      </CartProvider>
     </html>
   );
 }

@@ -8,7 +8,7 @@ type range = {
 }
 
 export default function useCounter(rango: range) {
-   const [counter, setCounter] = useState<number>(0)
+   const [counter, setCounter] = useState<number>(rango.min)
 
    const increment = () => {
       setCounter( value => {
@@ -25,7 +25,11 @@ export default function useCounter(rango: range) {
    }
 
    const setValue = (value: number) => {
-      setCounter(value)
+      if (value >= rango.min && value <= rango.max) {
+         setCounter(value)
+      }
+
+      
    }
 
    return { counter, increment, decrement, setValue}

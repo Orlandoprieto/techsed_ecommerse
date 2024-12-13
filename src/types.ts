@@ -5,8 +5,8 @@ export type Product = {
    price: number,
    listingPrice?: number,
    stock: number,
-   salesUnit: "group" | "unit" | "area",
-   measurementUnit?: "m2" | "m" | "pallet" | "bolson",
+   salesUnit: "pallets" | "cajas" | "unidad",
+   measurementUnit?: "superficie" | "metros" | "unidades",
    unitValue?: number,
 }
 

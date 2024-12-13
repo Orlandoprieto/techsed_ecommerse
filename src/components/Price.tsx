@@ -1,24 +1,26 @@
+import { Product } from "@/types"
 
-interface Price{
-   priceList?: number
-   priceSale: number
+interface PriceProps{
+   product: Product
 }
 
 
-export default function Price({ priceList, priceSale }: Price) {
+export default function Price({ product }: PriceProps) {
+   const {price, listingPrice} = product
+
    return (
       <div>
          <s className="text-gray-700 text-md">
-            {"$" + priceList}
+            {"$" + listingPrice}
          </s>
          <div className="flex gap-3 items-center">
             <strong className="text-2xl text-dark">
-               {"$" + priceSale}
+               {"$" + price}
             </strong>
             
-            {priceList && (
+            {listingPrice && (
                <span className="bg-secondary px-1 py-1 rounded-lg text-sm text-white">
-                  {((priceList - priceSale) / priceList * 100).toFixed() + "%"}
+                  {((listingPrice - price) / listingPrice * 100).toFixed() + "%"}
             </span>
             )}
          </div>

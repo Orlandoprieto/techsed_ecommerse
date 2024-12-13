@@ -8,19 +8,25 @@ import Image from "next/image";
 import { Product } from "@/types";
 
 import { fetchProduct } from "@/services/fetchProducts";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Loader from "@/components/Loader";
-
-
+import { calculateOnProductContext } from "@/context/CalculateOnProduct";
+import { CartContext } from "@/context/Cart";
 
 export default function ProductDetails() {
+   const router = useRouter()
    const id = useSearchParams().get("id")
 
-   const router = useRouter()
    const [product, setProduct] = useState<Product | null>(null)
+   const { setProducOnCalculate, cantidadB } = useContext(calculateOnProductContext)
+   const { state, addItem, removeItem } = useContext(CartContext)
 
    useEffect(() => {
+      if (product) {
+         setProducOnCalculate(product)
+      }
+
       fetchProduct(Number(id))
          .then(prod => {
             setProduct(prod)
@@ -28,7 +34,20 @@ export default function ProductDetails() {
          .catch(() => {
             router.push('/not-found')
          })
-   }, [])
+   }, [product])
+
+
+   const handleAddToCart = () => {
+      if (product) {
+         addItem(product, cantidadB);
+      }
+   };
+
+   const handleRemoveToCart = () => {
+      if (product) {
+         removeItem(product.id)
+      }
+   };
 
    return (
       <div className="flex flex-col lg:max-w-[1200px] lg:flex-row">
@@ -43,20 +62,17 @@ export default function ProductDetails() {
                      <span>{`Cantidad disponible: ${product.stock}`}</span>
                   </div>
 
-                  <Price
-                     priceList={product.listingPrice}
-                     priceSale={product.price}
-                  />
+                  <Price product={product} />
 
                   <div className="flex gap-10">
-                     <NumberUnits />
-                     <CounterDisplay />
+                     {(product.salesUnit != "unidad") && <NumberUnits />}
+                     <CounterDisplay  />
                   </div>
 
                   <p>{product.description}</p>
 
-                  <Button intent="primary" title="Agregar al carrito" />
-                  <Button title="Eliminar del carrito" />
+                  <Button intent="primary" title="Agregar al carrito" handlerClick={handleAddToCart}/>
+                  <Button title="Eliminar del carrito" handlerClick={handleRemoveToCart}/>
                </div>
             </>
          ) : (

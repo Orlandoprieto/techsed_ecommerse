@@ -1,14 +1,14 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import CardProduct from "./CardProduct";
+import { CardProduct } from "./CardProduct";
 import { Product } from "@/types";
 import { fetchProducts } from "@/services/fetchProducts";
 import Loader from "./Loader";
 
 export default function ProductsContainer() {
    const [products, setProducts] = useState<Product[]>([])
-   
+
    useEffect(() => {
       fetchProducts()
          .then(data => {
@@ -16,8 +16,8 @@ export default function ProductsContainer() {
          })
    })
 
-   if(products.length == 0) {
-      return <Loader/>
+   if (products.length == 0) {
+      return <Loader />
    }
 
    return (
