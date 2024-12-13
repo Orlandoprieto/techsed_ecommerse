@@ -1,5 +1,5 @@
 'use client'
-
+export const dynamic = 'force-dynamic';
 import Button from "@/components/Button";
 import CounterDisplay from "@/components/CountDisplay";
 import NumberUnits from "@/components/NumberUnits";
