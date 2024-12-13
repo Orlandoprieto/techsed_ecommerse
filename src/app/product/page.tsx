@@ -55,37 +55,36 @@ export default function ProductDetails() {
    };
 
    return (
-      <Suspense fallback={<Loader />}>
-         <div className="flex flex-col lg:max-w-[1200px] lg:flex-row">
-            {product ? (
-               <>
-                  <div className="flex w-full p-10 lg:w-1/2">
-                     <Image src={product.image} alt="" height={0} width={0} layout="responsive" />
+      <div className="flex flex-col lg:max-w-[1200px] lg:flex-row">
+         {product ? (
+            <>
+               <div className="flex w-full p-10 lg:w-1/2">
+                  <Image src={product.image} alt="" height={0} width={0} layout="responsive" />
+               </div>
+               <div className="flex flex-1 flex-col gap-5">
+                  <div className="flex flex-col">
+                     <strong className="text-2xl">{product.title}</strong>
+                     <span>{`Cantidad disponible: ${product.stock}`}</span>
                   </div>
-                  <div className="flex flex-1 flex-col gap-5">
-                     <div className="flex flex-col">
-                        <strong className="text-2xl">{product.title}</strong>
-                        <span>{`Cantidad disponible: ${product.stock}`}</span>
-                     </div>
 
-                     <Price product={product} />
+                  <Price product={product} />
 
-                     <div className="flex gap-10">
-                        {(product.salesUnit != "unidad") && <NumberUnits />}
-                        <CounterDisplay />
-                     </div>
-
-                     <p>{product.description}</p>
-
-                     <Button intent="primary" title="Agregar al carrito" handlerClick={handleAddToCart} />
-                     <Button title="Eliminar del carrito" handlerClick={handleRemoveToCart} />
+                  <div className="flex gap-10">
+                     {(product.salesUnit != "unidad") && <NumberUnits />}
+                     <CounterDisplay />
                   </div>
-               </>
-            ) : (
-               <Loader />
-            )}
-         </div>
-      </Suspense>
+
+                  <p>{product.description}</p>
+
+                  <Button intent="primary" title="Agregar al carrito" handlerClick={handleAddToCart} />
+                  <Button title="Eliminar del carrito" handlerClick={handleRemoveToCart} />
+               </div>
+            </>
+         ) : (
+            <Loader />
+         )}
+      </div>
+
 
 
    )
