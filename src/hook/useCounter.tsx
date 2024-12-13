@@ -28,8 +28,6 @@ export default function useCounter(rango: range) {
       if (value >= rango.min && value <= rango.max) {
          setCounter(value)
       }
-
-      
    }
 
    return { counter, increment, decrement, setValue}

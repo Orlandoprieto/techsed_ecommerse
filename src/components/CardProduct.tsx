@@ -11,10 +11,8 @@ interface CardProductProps {
 }
 
 interface CardProductCartProps {
-   id: number
-   title: string
+   product: Product
    quantity: number
-   image: string
 }
 
 export const CardProduct = ({ product }: CardProductProps) => {
@@ -27,7 +25,7 @@ export const CardProduct = ({ product }: CardProductProps) => {
    return (
       <div className="flex flex-col border border-1 border-gray-200 h-[450px] rounded-md p-[10px] md:p-[15px] lg:p-[15px]">
          <div className="flex w-full h-[60%] p-10">
-            <Image src="/12611.jpg" alt="" layout="responsive" width={10} height={10} />
+            <Image src={product.image} alt="" layout="responsive" width={10} height={10} />
          </div>
          <div className="flex flex-col flex-1 justify-around">
             <p className="text-neutral text-base sm:text-lg md:text-xl lg:text-lg xl:text-base">
@@ -42,7 +40,9 @@ export const CardProduct = ({ product }: CardProductProps) => {
 
 
 
-export const CardProductCart = ({ id, image, title, quantity }: CardProductCartProps) => {
+export const CardProductCart = ({ product, quantity }: CardProductCartProps) => {
+
+   const {image, title} = product
 
    return (
       <div className="flex items-center justify-between border-b border-gray-200 py-4 px-4">

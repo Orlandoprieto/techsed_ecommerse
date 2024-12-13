@@ -14,10 +14,10 @@ export default function CartContainer() {
             {(state.items.length > 0) ? (
                state.items.map(prod => (
                   <CardProductCart
-                     id={prod.product.id}
+                     key={prod.product.title + prod.product.id}
+                     product={prod.product}
                      quantity={prod.quantity}
-                     title={prod.product.title}
-                     image=''
+                     
                   />
                ))
             ) : (

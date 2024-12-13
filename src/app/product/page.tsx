@@ -19,10 +19,16 @@ export default function ProductDetails() {
    const id = useSearchParams().get("id")
 
    const [product, setProduct] = useState<Product | null>(null)
-   const { setProducOnCalculate, cantidadB } = useContext(calculateOnProductContext)
-   const { state, addItem, removeItem } = useContext(CartContext)
+   const { setProducOnCalculate, cantidadB, setCantidadA, setCantidadB } = useContext(calculateOnProductContext)
+   const { addItem, removeItem } = useContext(CartContext)
 
    useEffect(() => {
+
+      
+      setCantidadA(1)
+      setCantidadB(1)
+      
+
       if (product) {
          setProducOnCalculate(product)
       }
@@ -34,6 +40,7 @@ export default function ProductDetails() {
          .catch(() => {
             router.push('/not-found')
          })
+
    }, [product])
 
 
@@ -54,7 +61,7 @@ export default function ProductDetails() {
          {product ? (
             <>
                <div className="flex w-full p-10 lg:w-1/2">
-                  <Image src="/12611.jpg" alt="" height={0} width={0} layout="responsive" />
+                  <Image src={product.image} alt="" height={0} width={0} layout="responsive" />
                </div>
                <div className="flex flex-1 flex-col gap-5">
                   <div className="flex flex-col">
@@ -66,13 +73,13 @@ export default function ProductDetails() {
 
                   <div className="flex gap-10">
                      {(product.salesUnit != "unidad") && <NumberUnits />}
-                     <CounterDisplay  />
+                     <CounterDisplay />
                   </div>
 
                   <p>{product.description}</p>
 
-                  <Button intent="primary" title="Agregar al carrito" handlerClick={handleAddToCart}/>
-                  <Button title="Eliminar del carrito" handlerClick={handleRemoveToCart}/>
+                  <Button intent="primary" title="Agregar al carrito" handlerClick={handleAddToCart} />
+                  <Button title="Eliminar del carrito" handlerClick={handleRemoveToCart} />
                </div>
             </>
          ) : (

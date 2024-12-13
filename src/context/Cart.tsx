@@ -1,18 +1,8 @@
 'use client'
 
+import { Product } from '@/types';
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
-export type Product = {
-   id: number;
-   title: string;
-   description: string;
-   price: number;
-   listingPrice?: number;
-   stock: number;
-   salesUnit: 'pallets' | 'cajas' | 'unidad';
-   measurementUnit?: 'superficie' | 'metros' | 'unidades';
-   unitValue?: number;
-};
 
 export type CartItem = {
    product: Product;

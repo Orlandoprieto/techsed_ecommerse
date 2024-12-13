@@ -1,7 +1,7 @@
 'use client'
 
 import { Product } from '@/types'
-import React, { useEffect, useState, createContext, useCallback, useContext } from 'react'
+import React, { useEffect, useState, createContext, useContext } from 'react'
 
 interface ICalculateOnProductContext {
    setProducOnCalculate: (product: Product) => void,
@@ -10,6 +10,7 @@ interface ICalculateOnProductContext {
    cantidadB: number,
    setCantidadA: (cantidad: number) => void,
    setCantidadB: (cantidad: number) => void,
+
 }
 
 export const calculateOnProductContext = createContext<ICalculateOnProductContext>({
@@ -18,9 +19,9 @@ export const calculateOnProductContext = createContext<ICalculateOnProductContex
    cantidadA: 0,
    setCantidadA: (cantidad: number) => {},
    setCantidadB: (cantidad: number) => {},
-   cantidadB: 0, 
+   cantidadB: 0,
+   
 });
-
 
 interface CalculateOnProductProps {
    children: React.ReactNode
@@ -55,10 +56,11 @@ export default function CalculateOnProduct({ children }: CalculateOnProductProps
       }
    }, [cantidadA, productSelected?.unitValue]);
 
-   const setProducOnCalculate = useCallback((product: Product) => {
+   const setProducOnCalculate = (product: Product) => {
       setProductSelected(product);
-   }, []);
+   };
 
+   
    return (
       <calculateOnProductContext.Provider value={{
          setProducOnCalculate,
