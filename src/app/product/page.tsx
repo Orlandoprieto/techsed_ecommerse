@@ -23,12 +23,10 @@ export default function ProductDetails() {
    const { addItem, removeItem } = useContext(CartContext)
 
    useEffect(() => {
-
-      
+      //resetar contadores
       setCantidadA(1)
       setCantidadB(1)
       
-
       if (product) {
          setProducOnCalculate(product)
       }

@@ -1,10 +1,10 @@
 'use client'
 
-import { useEffect, useState } from "react";
-import { CardProduct } from "./CardProduct";
+import { useEffect, useState } from "react"
+import { CardProduct } from "./CardProduct"
 import { Product } from "@/types";
-import { fetchProducts } from "@/services/fetchProducts";
-import Loader from "./Loader";
+import { fetchProducts } from "@/services/fetchProducts"
+import Loader from "./Loader"
 
 export default function ProductsContainer() {
    const [products, setProducts] = useState<Product[]>([])
